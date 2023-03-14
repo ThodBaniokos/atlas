@@ -1,4 +1,6 @@
-# Use root/example as user/password credentials
+# To use adminer image:
+# un-comment the adminer service below the db service
+# use root as username and example as password
 # version: '3.1'
 #
 services:
