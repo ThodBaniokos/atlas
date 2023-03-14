@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main login-page">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card class="login-form-fields">
+            <div class="content">
+                <h1>Σύνδεση στον Άτλας</h1>
+                <form class="flex" [formGroup]="loginForm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Όνομα Χρήστη</mat-label>
+                        <input matInput placeholder="Πληκτρολόγηστε εδώ"
+                            formControlName="username" required>
+                        <mat-error *ngIf="f['username'].invalid">Το πεδίο είναι
+                            υποχρεωτικό</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Κωδικός</mat-label>
+                        <input type="password" matInput
+                            placeholder="Πληκτρολόγηστε εδώ"
+                            formControlName="password" required>
+                        <mat-error *ngIf="f['password'].invalid">Το πεδίο είναι
+                            υποχρεωτικό</mat-error>
+                    </mat-form-field>
+                    <p>Τα πεδία με αστερίσκο ( * ) είναι υποχρεωτικά</p>
+                    <button class="flat-blue-btn login-btn" type="submit" mat-flat-button
+                        (click)="onSubmit()">Σύνδεση</button>
+                    <mat-error *ngIf="tryingToSubmit">Συμπλήρωσε όλα τα στοιχεία</mat-error>
+                    <mat-error *ngIf="badCredentials">Το όνομα χρήστη ή/και ο
+                        κωδικός είναι λανθασμένοι</mat-error>
+                </form>
+                <h3>Δεν έχεις λογαργιασμό;</h3>
+                <button class="flat-blue-btn" mat-flat-button
+                    routerLink="/index/register">Δημιούγησε τώρα</button>
+            </div>
+        </mat-card>
+        <div class="main help-and-nav">
+            <h3>Αντιμετωπίζεις κάποιο πρόβλημα;</h3>
+            <button class="flat-yellow-btn" mat-flat-button routerLink="/index/under-dev">Επικοινωνήστε μαζί
+                μας</button>
+            <button class="stroked-yellow-btn" mat-stroked-button
+                routerLink="/index">Επιστροφή στην Αρχική</button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

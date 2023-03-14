@@ -1,0 +1,72 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . .";
+}
+
+.main {
+    grid-area: main;
+}
+
+.about-page {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+mat-card {
+    padding: 40px 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.main.about-page mat-card h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main.about-page mat-card .about {
+
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.main.about-page mat-card .about button {
+
+    justify-self: center;
+}
+
+.flat-blue-btn {
+    border-radius: 0 !important;
+    background-color: #213f9a !important;
+    text-align: center !important;
+    color: white !important;
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.about p {
+    max-width: 600px;
+    margin-left: 100px;
+}
+
+.about ul {
+    max-width: 500px;
+    margin-left: 100px;
+}
+
+.about li {
+    margin-bottom: 20px;
+}

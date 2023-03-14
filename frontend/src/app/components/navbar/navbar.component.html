@@ -1,0 +1,28 @@
+<div class="header-container">
+    <div class="header">
+        <div class="flex-start">
+            <a (click)="goToHomepage()"><img class="img-logo" src="/assets/images/atlas-logo.png" alt="atlas logo" loading="lazy"></a>
+        </div>
+        <div class="flex-end">
+            <img class="img-lang" src="/assets/images/gr.png" alt="greek flag" loading="lazy" width="32px" height="32px">
+            <img class="img-lang" src="/assets/images/en.png" alt="england's flag" loading="lazy" width="32px" height="32px">
+            <button *ngIf="!isLoggedIn()" class="stroked-btn" mat-stroked-button routerLink="/index/login">Σύνδεση</button>
+            <button *ngIf="!isLoggedIn()" class="flat-btn last" mat-flat-button routerLink="/index/register">Εγγραφή</button>
+            <div *ngIf="isLoggedIn()" class="dropdown-profile">
+                <button [matBadge]="(hasNotSeen === true) ? '1' : ''" matBadgeColor="warn" class="flat-btn last" mat-flat-button (click)="goToProfile()"><mat-icon>person</mat-icon>&nbsp;&nbsp;Λογαριασμός</button>
+                <div class="dropdown-content-profile">
+                    <a class="dropdown-item-profile click" (click)="goToProfile()">Προβολή Προφίλ</a>
+                    <a *ngIf="!isStudent()" class="dropdown-item-profile click" (click)="goToProviderListings()">Λίστα Αγγελιών</a>
+                    <a [matBadge]="(hasNotSeen === true) ? '1' : ''" matBadgeColor="warn" *ngIf="isStudent()" class="dropdown-item-profile click" (click)="goToStudentApplications()">Λίστα Αιτήσεων</a>
+                    <a class="dropdown-item-profile click" (click)="logout()">Αποσύνδεση</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar">
+        <div>
+            <button class="flat-btn" mat-flat-button (click)="makeRedirection('index/internships/results')">Αναζήτηση Θέσεων</button>
+            <button class="flat-btn last margin" mat-flat-button (click)="makeRedirection('index/employer/new-internship')">Δημιουργία Αγγελίας</button>
+        </div>
+    </div>
+</div>

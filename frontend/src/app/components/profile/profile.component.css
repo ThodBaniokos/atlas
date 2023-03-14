@@ -1,0 +1,119 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . ."
+        ". . . main main main main main main . . .";
+}
+
+.main {
+    grid-area: main;
+}
+
+mat-card {
+    padding: 40px 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.profile {
+    grid-column-start: 2;
+    grid-column-end: 12;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.user-info {
+
+    display: flex;
+
+}
+
+.title {
+    font-size: large;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    margin-right: 20px;
+    align-items: center;
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-size: large;
+    justify-content: center;
+    background: #014d8d;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.text-titles {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.text-titles p.title {
+    margin-right: 20px;
+}
+
+.text-titles p {
+    margin-bottom: 50px;
+}
+
+a {
+    text-decoration: underline;
+    color: #014d8d;
+    cursor: pointer;
+}
+
+.stroked-btn {
+    border-radius: 0 !important;
+    text-align: center !important;
+    color: #014d8d !important;
+    margin-right: 20px! important;
+    border-color: #014d8d !important;
+    background-color: white !important;
+}
+
+.flat-btn {
+    border-radius: 0 !important;
+    background-color: #014d8d !important;
+    text-align: center !important;
+    color: white !important;
+    margin-right: 20px !important;
+}
+
+.sbs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.sbs-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

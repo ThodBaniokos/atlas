@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i < breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card class="flex">
+            <h1>Η σελίδα αυτή βρίσκεται ακόμα υπό ανάπτυξη</h1>
+            <p>Ευχαριστούμε για την κατανόηση</p>
+            <br>
+            <br>
+            <br>
+            <br>
+            <button mat-flat-button class="flat-btn" (click)="goToHome()">Επιστροφή στην αρχική</button>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

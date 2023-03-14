@@ -1,0 +1,124 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . .";
+}
+
+.main {
+    grid-area: main;
+}
+
+mat-card {
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-right: 50px;
+    padding-left: 50px;
+    background-color: white;
+    height: auto;
+}
+
+.content {
+    grid-column-start: 2;
+    grid-column-end: 12;
+}
+
+.stroked-yellow-btn {
+    border-radius: 0 !important;
+    text-align: center !important;
+    color: #f89330 !important;
+    border-color: #f89330 !important;
+    margin-right: 20px !important;
+    background-color: white !important;
+}
+
+.stroked-yellow-btn.last {
+    margin-right: 0 !important;
+}
+
+.flat-btn {
+    border-radius: 0 !important;
+    background-color: #014d8d !important;
+    text-align: center !important;
+    color: white !important;
+    margin-right: 20px !important;
+}
+
+.flex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.flex.column {
+    flex-direction: column;
+}
+
+.sbs {
+    display: flex;
+    justify-content: space-between !important;
+    flex-direction: column;
+    align-items: stretch !important;
+    height: 100%;
+}
+
+.sbs-top {
+    display: flex;
+    justify-content: baseline;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.sbs-top h2 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.sbs-top p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    max-width: 300px;
+}
+
+.sbs-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sbs-pair {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+}
+
+.sbs-pair img {
+    width: 20px;
+    height: 20px;
+}
+
+.width-60 {
+    width: 60%;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.mat-mdc-checkbox.mat-accent {
+    --mdc-checkbox-selected-focus-icon-color: #014a87;
+    --mdc-checkbox-selected-hover-icon-color: #014a87;
+    --mdc-checkbox-selected-icon-color: #014a87;
+    --mdc-checkbox-selected-pressed-icon-color: #014a87;
+}

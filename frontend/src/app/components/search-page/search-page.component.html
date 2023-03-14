@@ -1,0 +1,184 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card class="center">
+            <h3>Αποτελέσματα αναζήτησης</h3>
+            <form class="form-margin flex-row form-input"
+                [formGroup]="searchForm">
+                <div class="form-input-row">
+                    <div class="width-33">
+                        <span class="sbs">
+                            <p>
+                                <strong>Θέσεις ανά Περιοχή</strong>
+                            </p>
+                            <button type="button"
+                                mat-icon-button
+                                matTooltip="Προαιρετική Επιλογή"
+                                color="primary">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Περιοχή Πρακτικής Άσκησης</mat-label>
+                            <input type="text"
+                                aria-label="Περιοχή Πρακτικής Άσκησης"
+                                matInput
+                                formControlName="location"
+                                [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption
+                                #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of
+                                    filteredOptions | async"
+                                    [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="width-33">
+                        <span class="sbs">
+                            <p>
+                                <strong>Θέσεις ανά Τμήμα</strong>
+                            </p>
+                            <button type="button"
+                                mat-icon-button
+                                matTooltip="Προαιρετική Επιλογή"
+                                color="primary">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Τμήμα</mat-label>
+                            <input type="text"
+                                aria-label="τμηματα πανεπιστημιων"
+                                matInput
+                                formControlName="department"
+                                [matAutocomplete]="autoGroup">
+                            <mat-autocomplete #autoGroup="matAutocomplete">
+                                <mat-optgroup *ngFor="let group of
+                                    departmentsGroupOptions | async"
+                                    [label]="group.university">
+                                    <mat-option *ngFor="let name of
+                                        group.department" [value]="name">
+                                        {{name}}
+                                    </mat-option>
+                                </mat-optgroup>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-input-row">
+                    <div class="width-33">
+                        <span class="sbs">
+                            <p>
+                                <strong>Διάρκεια απασχόλησης</strong>
+                            </p>
+                            <button type="button"
+                                mat-icon-button
+                                matTooltip="Προαιρετική Επιλογή"
+                                color="primary">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Διάρκεια απασχόλησης</mat-label>
+                            <mat-select formControlName="duration">
+                                <mat-option *ngFor="let duration of
+                                    employmentTime"
+                                    [value]="duration">
+                                    {{duration}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="width-33">
+                        <span class="sbs">
+                            <p>
+                                <strong>Τύπος Πρακτικής Άσκησης</strong>
+                            </p>
+                            <button type="button"
+                                mat-icon-button
+                                matTooltip="Προαιρετική Επιλογή"
+                                color="primary">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Τύπος Πρακτικής Άσκησης</mat-label>
+                            <mat-select formControlName="employmentType">
+                                <mat-option *ngFor="let type of internshipTypes"
+                                    [value]="type">
+                                    {{type}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f['employmentType'].invalid">Το
+                                πεδίο είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+
+                    </div>
+
+                </div>
+                <div class="form-input-row">
+                    <div class="width-33">
+                        <span class="sbs">
+                            <p>
+                                <strong>Περίοδος Απασχόλησης</strong>
+                            </p>
+                            <button type="button"
+                                mat-icon-button
+                                matTooltip="Προαιρετική Επιλογή"
+                                color="primary">
+                                <mat-icon>info</mat-icon>
+                            </button>
+                        </span>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Περίοδος Απασχόλησης</mat-label>
+                            <mat-date-range-input [rangePicker]="picker"
+                                required>
+                                <input matStartDate formControlName="startDate"
+                                    placeholder="Έναρξη" aria-label="ημερομηνία έναρξης πρακτικής" required>
+                                <input matEndDate formControlName="endDate"
+                                    placeholder="Λήξη" aria-label="ημερομηνία λήξης πρακτικής" required>
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            <button class="flat-btn" mat-flat-button color="primary"
+                (click)="search()">Αναζήτηση Θέσεων</button>
+        </mat-card>
+        <div *ngIf="internshipResults.length > 0" class="grid-container">
+            <mat-card class="grid-item" *ngFor="let internship of
+                internshipResults; let i= index">
+                <p>{{internship.author.providerName}}</p>
+                <h3>{{internship.title}}</h3>
+                <p>{{internship.employmentLocation}}</p>
+                <p>{{internship.employmentType}}</p>
+                <p>{{getInternshipDuration(internship)}}</p>
+                <br>
+                <mat-card-actions class="justify-center">
+                    <button mat-flat-button class="flat-btn"
+                        (click)="goToInternshipPage(internship)">Προβολή
+                        Αγγελίας</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div *ngIf="internshipResults.length === 0" class="center">
+            <mat-card>
+                <p>Δεν βρέθηκαν αγγελίες</p>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

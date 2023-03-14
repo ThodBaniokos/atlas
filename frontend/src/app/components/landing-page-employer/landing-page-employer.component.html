@@ -1,0 +1,59 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card>
+            <div class="flex logo">
+                <img class="logo" src="assets/images/atlas-logo-text.png"
+                    alt="Atlas Logo Text" loading="lazy">
+                <h1 class="slogan">Κόμβος Πρακτικής Άσκησης</h1>
+            </div>
+            <div class="flex listing">
+                <h2>Δημοσίευσε την αγγελία σου
+                    για πρακτική άσκηση</h2>
+                <button type="button" class="flat-btn big" mat-flat-button (click)="makeRedirection('employer')">Δημιουργία αγγελίας</button>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h3>Είσαι φοιτητής;</h3>
+                <button type="button" class="flat-btn" mat-flat-button (click)="makeRedirection('student')">Δες αγγελίες πρακτικών</button>
+            </div>
+        </mat-card>
+        <mat-card>
+            <div class="flex-column">
+                <h3>Πως Λειτουργεί η υπηρεσία</h3>
+                <div class="flex-row bottom-cards">
+                    <div class="bottom-card">
+                        <img src="assets/images/new-listing.png" alt="user icon"
+                            loading="lazy" width="100px" height="100px">
+                        <p>
+                            Δημιούργησε μια αγγελία πρακτικής άσκησης εύκολα και γρήγορα.
+                        </p>
+                    </div>
+                    <div class="bottom-card">
+                        <img src="assets/images/search-applicants.png" alt="file upload"
+                            loading="lazy" width="100px" height="100px">
+                        <p>
+                            Διαχειρίσου τις εισερχόμενες αιτήσεις σου και επέλεξε φοιτητές για να ξεκινήσουν την πρακτική άσκηση.
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <button class="flat-btn" mat-flat-button (click)="makeRedirection('employer')">Ξεκίνα τώρα</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

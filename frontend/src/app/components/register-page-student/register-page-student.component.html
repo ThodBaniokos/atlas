@@ -1,0 +1,144 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main login-form">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card class="center">
+            <h2>Συμπλήρωσε τα στοιχεία σου</h2>
+            <mat-stepper [linear]='false' #stepper>
+                <mat-step [stepControl]="registerFormStudent" [editable]="true">
+                    <form [formGroup]="registerFormStudent">
+                        <ng-template matStepLabel>Προσωπικά στοιχεία</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Όνομα</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="firstname" required>
+                            <mat-error *ngIf="f['firstname'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Επώνυμο</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="lastname" required>
+                            <mat-error *ngIf="f['lastname'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Πανεπιστήμιο</mat-label>
+                            <input type="text"
+                                aria-label="Όνομα Πανεπιστημίου"
+                                matInput
+                                formControlName="university"
+                                [matAutocomplete]="autoUni">
+                            <mat-autocomplete autoActiveFirstOption
+                                #autoUni="matAutocomplete">
+                                <mat-option *ngFor="let option of
+                                    filteredUniversityList | async"
+                                    [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="f['university'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Τμήμα</mat-label>
+                            <input type="text"
+                                aria-label="Τμήμα Πανεπιστημίου"
+                                matInput
+                                formControlName="department"
+                                [matAutocomplete]="autoDep">
+                            <mat-autocomplete autoActiveFirstOption
+                                #autoDep="matAutocomplete">
+                                <mat-option *ngFor="let option of
+                                    filteredDepartmentList | async"
+                                    [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="f['department'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn
+                                opacity-0" mat-flat-button disabled>Επόμενο Βήμα</button>
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperNext>Επόμενο Βήμα</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="registerFormStudent" [editable]="true">
+                    <form [formGroup]="registerFormStudent">
+                        <ng-template matStepLabel>Στοιχεία λογαριασμού</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Όνομα χρήστη</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="username" required>
+                            <mat-error *ngIf="f['username'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Διεύθυνση ηλεκτρονικού ταχυδρομείου</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="email" required>
+                            <mat-error *ngIf="f['email'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Κωδικός</mat-label>
+                            <input aria-label="password" type="password"
+                                matInput formControlName="password" required>
+                            <mat-error *ngIf="f['password'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <p class="left">Ο κωδικός πρέπει να περιέχει:</p>
+                        <ul>
+                            <li *ngFor="let req of passwordRequirments">
+                                <div class="sbs">
+                                    {{req[0]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <mat-icon class="green" *ngIf="req[1]">check_circle</mat-icon>
+                                    <mat-icon class="red" *ngIf="!req[1]">cancel</mat-icon>
+                                </div>
+                            </li>
+                        </ul>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Επιβεβαίωση Κωδικού</mat-label>
+                            <input aria-label="confirm password" type="password"
+                                matInput formControlName="confirmPassword"
+                                required>
+                            <mat-error *ngIf="f['confirmPassword'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                            <mat-error *ngIf="f['confirmPassword'].errors &&
+                                f['confirmPassword'].errors['mustMatch']">Οι
+                                κωδικοί πρόσβασης δεν ταιριάζουν
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperPrevious>Προηγούμενο
+                                Βήμα</button>
+                            <button class="flat-blue-btn" mat-flat-button
+                                type="button" (click)="registerStudent()">Εγγραφή</button>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-stepper>
+        </mat-card>
+    </div>
+    <div class="main help-and-nav">
+        <h3>Αντιμετωπίζεις κάποιο πρόβλημα;</h3>
+        <button class="flat-yellow-btn" mat-flat-button routerLink="/index/under-dev">Επικοινωνήστε μαζί
+            μας</button>
+        <button class="stroked-yellow-btn" mat-stroked-button
+            routerLink="/index">Επιστροφή στην Αρχική</button>
+    </div>
+</div>
+<app-footer></app-footer>

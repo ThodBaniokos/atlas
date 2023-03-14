@@ -1,0 +1,154 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <div class="flex">
+            <div class="width-100 margin-right-30">
+                <mat-card class="flex" *ngIf="internship && updateInternshipForm
+                    &&
+                    (!isStudent() &&
+                    isLoggedIn())">
+                    <h1>Αλλαγή λεπτομερειών αγγελίας</h1>
+                    <form [formGroup]="updateInternshipForm" class="flex
+                        f-form">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Τίτλος Αγγελίας</mat-label>
+                            <input matInput formControlName="title"
+                                aria-label="Τίτλος Αγγελίας">
+                            <mat-error *ngIf="f['title'].invalid">Το πεδίο είναι
+                                υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Περιγραφή θέσης</mat-label>
+                            <textarea matInput formControlName="description"
+                                aria-label="περιγραφή θέσης"></textarea>
+                            <mat-hint *ngIf="!f['description'].invalid">{{f['description'].value.length}}
+                                / 255 χαρακτήρες</mat-hint>
+                            <mat-error
+                                *ngIf="f['description'].hasError('required')">Το
+                                πεδίο είναι υποχρεωτικό</mat-error>
+                            <mat-error
+                                *ngIf="f['description'].hasError('maxlength')">Η
+                                περιγραφή πρέπει να έχει το πολύ 255 χαρακτήρες</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Περίοδος Απασχόλησης</mat-label>
+                            <mat-date-range-input [rangePicker]="picker"
+                                required>
+                                <input matStartDate formControlName="startDate"
+                                    placeholder="Έναρξη" aria-label="ημερομηνία
+                                    έναρξης πρακτικής" required>
+                                <input matEndDate formControlName="endDate"
+                                    placeholder="Λήξη" aria-label="ημερομηνία
+                                    λήξης πρακτικής" required>
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                            <mat-error
+                                *ngIf="f['startDate'].hasError('matStartDateInvalid')">Μη
+                                αποδεκτή ημερομηνία έναρξης</mat-error>
+                            <mat-error
+                                *ngIf="f['endDate'].hasError('matEndDateInvalid')">Μη
+                                αποδεκτή ημερομηνία έναρξης</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Διάρκεια απασχόλησης</mat-label>
+                            <mat-select formControlName="duration">
+                                <mat-option *ngFor="let duration of
+                                    employmentTime"
+                                    [value]="duration">
+                                    {{duration}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f['duration'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Τύπος Πρακτικής Άσκησης</mat-label>
+                            <mat-select formControlName="employmentType">
+                                <mat-option *ngFor="let type of internshipTypes"
+                                    [value]="type">
+                                    {{type}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f['employmentType'].invalid">Το
+                                πεδίο είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Περιοχή Πρακτικής Άσκησης</mat-label>
+                            <input type="text"
+                                aria-label="Περιοχή Πρακτικής Άσκησης"
+                                matInput
+                                formControlName="employmentLocation"
+                                [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption
+                                #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of
+                                    filteredOptions | async"
+                                    [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="f['employmentLocation'].invalid">Το
+                                πεδίο είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ενδιαφερόμενο Τμήμα και Πανεπιστήμιο</mat-label>
+                            <input type="text"
+                                aria-label="τμηματα πανεπιστημιων"
+                                matInput
+                                formControlName="department"
+                                required
+                                [matAutocomplete]="autoGroup">
+                            <mat-autocomplete #autoGroup="matAutocomplete">
+                                <mat-optgroup *ngFor="let group of
+                                    departmentsGroupOptions | async"
+                                    [label]="group.university">
+                                    <mat-option *ngFor="let name of
+                                        group.department" [value]="name">
+                                        {{name}}
+                                    </mat-option>
+                                </mat-optgroup>
+                            </mat-autocomplete>
+                            <mat-error *ngIf="f['department'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Μηνιαίος μισθός θέσης</mat-label>
+                            <input type="number" matInput
+                                formControlName="remunerationAmt"
+                                aria-label="Τίτλος Αγγελίας">
+                            <mat-error *ngIf="f['remunerationAmt'].invalid">Το
+                                πεδίο είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-card-actions class="sbs-action-buttons">
+                            <button type="button" *ngIf="!internship.enabled"
+                                mat-flat-button
+                                class="flat-blue-btn"
+                                (click)="updateInternship()">Αλλαγή
+                                λεπτομερειών αγγελίας</button>
+                        </mat-card-actions>
+                    </form>
+                </mat-card>
+            </div>
+            <div *ngIf="internship && internship.enabled" class="width-100
+                margin-right-30 last">
+                <div class="sbs-applicant-buttons">
+                    <button mat-stroked-button class="margin-right-30
+                        stroked-yellow-btn">Απόρριψη υποψηφίου</button>
+                    <button mat-stroked-button class="stroked-yellow-btn">Επιλογή
+                        υποψηφίου</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,330 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <div class="flex">
+            <div class="width-100 margin-right-30">
+                <mat-card *ngIf="internship && (isStudent() ||
+                    !isLoggedIn())">
+                    <div class="flex-column">
+                        <p>{{internship.author.providerName}}</p>
+                        <h2>{{internship.title}}</h2>
+                        <p class="p-desc">{{internship.description}}</p>
+                        <p>Ημέρα έναρξης:
+                            {{getDate(internship.startDate)}}</p>
+                        <p>Ημέρα λήξης:
+                            {{getDate(internship.endDate)}}</p>
+                        <p>Διάρκεια πρακτικής άσκησης:
+                            {{internship.duration}} μήνες</p>
+                        <p>Τύπος απασχόλησης:
+                            {{internship.employmentType}}</p>
+                        <p>Περιοχή:
+                            {{internship.employmentLocation}}</p>
+                        <p>Μηνιαίες αποδοχές:
+                            {{internship.remunerationAmt}} €</p>
+                        <p>Tμήμα: {{internship.department}}</p>
+                        <p>Όνομα εκρποσώπου:
+                            {{internship.author.firstname}}</p>
+                        <p>Επώνυμο εκρποσώπου:
+                            {{internship.author.lastname}}</p>
+                        <p>Σταθερό τηλέφωνο επικοινωνίας:
+                            {{internship.author.providerLandline}}</p>
+                        <p>Email επικοινωνίας:
+                            {{internship.author.email}}</p>
+                    </div>
+                    <mat-card-actions *ngIf="!isLoggedIn()"
+                        class="sbs-action-buttons">
+                        <button mat-flat-button
+                            class="flat-blue-btn"
+                            (click)="applyForInternship()">Κάνε αίτηση
+                            για πρακτική</button>
+                    </mat-card-actions>
+                </mat-card>
+                <mat-card *ngIf="internship &&
+                    (!isStudent() &&
+                    isLoggedIn())">
+                    <div class="flex-column">
+                        <p>{{internship.author.providerName}}</p>
+                        <h2>{{internship.title}}</h2>
+                        <p class="p-desc">{{internship.description}}</p>
+                        <p>Ημέρα έναρξης:
+                            {{getDate(internship.startDate)}}</p>
+                        <p>Ημέρα λήξης:
+                            {{getDate(internship.endDate)}}</p>
+                        <p>Διάρκεια πρακτικής άσκησης:
+                            {{internship.duration}} μήνες</p>
+                        <p>Τύπος απασχόλησης:
+                            {{internship.employmentType}}</p>
+                        <p>Περιοχή:
+                            {{internship.employmentLocation}}</p>
+                        <p>Μηνιαίες αποδοχές:
+                            {{internship.remunerationAmt}} €</p>
+                        <p>Tμήμα: {{internship.department}}</p>
+                        <p>Όνομα εκρποσώπου:
+                            {{internship.author.firstname}}</p>
+                        <p>Επώνυμο εκρποσώπου:
+                            {{internship.author.lastname}}</p>
+                        <p>Σταθερό τηλέφωνο επικοινωνίας:
+                            {{internship.author.providerLandline}}</p>
+                        <p>Email επικοινωνίας:
+                            {{internship.author.email}}</p>
+                    </div>
+                    <mat-card-actions class="sbs-action-buttons">
+                        <button *ngIf="!internship.enabled" mat-flat-button
+                            class="flat-blue-btn"
+                            (click)="changeInternshipDetails(internship)">Αλλαγή
+                            λεπτομερειών αγγελίας</button>
+                        <button *ngIf="!internship.enabled" mat-flat-button
+                            class="flat-blue-btn"
+                            (click)="enableInternship(internship)">Δημοσίευση
+                            αγγελίας</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div *ngIf="isLoggedIn() && isStudent() && !hasStudentApplied"
+                class="width-100
+                margin-right-30
+                flex-column-scroll last">
+                <mat-card *ngIf="student" class="width-100
+                    margin-top-30 padding-50">
+                    <h2>Δημιουργία αίτησης για πρακτική άσκηση</h2>
+                    <form class="text-titles"
+                        [formGroup]="newApplicationForm"
+                        *ngIf="newApplicationForm">
+                        <div class="flex-form">
+                            <p>Γιατί πρέπει να επιλεγείς εσύ για τη
+                                θέση;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <mat-form-field appearance="fill">
+                                <textarea matInput formControlName="reasoning"
+                                    aria-label="κείμενο αίτησης για πρακτική
+                                    άσκηση"></textarea>
+                                <mat-hint *ngIf="!f['reasoning'].invalid">{{f['reasoning'].value.length}}
+                                    / 255 χαρακτήρες</mat-hint>
+                                <mat-error
+                                    *ngIf="(submitted && f['reasoning'].hasError('required')) || f['reasoning'].hasError('required')">Το
+                                    πεδίο είναι υποχρεωτικό</mat-error>
+                                <mat-error
+                                    *ngIf="f['reasoning'].hasError('maxlength')">Το
+                                    κείμενο που θα γράψεις πρέπει να έχει το
+                                    πολύ 255 χαρακτήρες</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex-form">
+                            <div class="flex-file">
+                                <span class="sbs-tooltip">
+                                    <p>
+                                        Αναλυτική βαθμολογία
+                                    </p>
+                                    <button type="button"
+                                        mat-icon-button
+                                        matTooltip="Αν ανεβάσεις αρχείο κατά την
+                                        αίτηση σου για πρακτική άσκηση θα
+                                        ενημωρηθεί και αυτόματα το προφίλ σου με
+                                        το αρχείο."
+                                        color="primary">
+                                        <mat-icon>info</mat-icon>
+                                    </button>
+                                    :
+                                </span>
+                                <a *ngIf="this.student.gradesFile" (click)="openFileByPath(this.student.gradesFile)">{{getFileName()}}</a>&nbsp;
+                                <p *ngIf="!this.student.gradesFile || fileToUpload !== null">{{getFileName()}}&nbsp;</p>
+                                <input aria-label="add files" type="file"
+                                    (change)="onChange($event)" #fileUpload
+                                    multiple
+                                    hidden>
+                                <button class="circle mini" type="button"
+                                    mat-icon-button
+                                    (click)="fileUpload.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                                </button>
+                            </div>
+                            <mat-error *ngIf="submitted && f['grades'].invalid">
+                                Δεν υπάρχει αρχείο αναλυτικής βαθμολογίας
+                            </mat-error>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <button mat-flat-button class="flat-blue-btn"
+                        (click)="createApplication()">Δημιουργία
+                        αίτησης</button>
+                </mat-card>
+            </div>
+            <div *ngIf="isLoggedIn() && isStudent() && hasStudentApplied"
+                class="width-100
+                margin-right-30
+                flex-column-scroll last">
+                <mat-card *ngIf="!updatingExisting" class="width-100
+                    margin-top-30 padding-50">
+                    <h2>Λεπτομέρειες αίτησης για πρακτική άσκηση</h2>
+                    <h3>Κείμενο αίτησης</h3>
+                    <p>{{studentApplication.reasoning}}</p>
+                    <h3>Αρχείο βαθμολογίας</h3>
+                    <a *ngIf="studentApplication.grades"
+                        (click)="openFileByPath(studentApplication.grades)">{{studentApplication.grades.pdf.path}}</a>
+                    <h3>Κατάσταση αίτησης</h3>
+                    <p *ngIf="!studentApplication.submitted">Προσωρινά αποθηκευμένη</p>
+                    <p *ngIf="studentApplication.submitted && studentApplication.status">{{studentApplication.status}}</p>
+                    <h3 *ngIf="studentApplication.submitted && studentApplication.status === 'Απορρίφθηκε'">Αίτια απόρριψης</h3>
+                    <p *ngIf="studentApplication.submitted && studentApplication.status === 'Απορρίφθηκε'">{{studentApplication.cancelReasoning}}</p>
+                    <div class="sbs-action-buttons">
+                        <button *ngIf="!studentApplication.submitted" mat-stroked-button class="stroked-blue-btn"
+                            (click)="updateExistingToggle()">Επεξεργασία
+                            αίτησης</button>
+                        <button *ngIf="!studentApplication.submitted" mat-flat-button class="flat-blue-btn"
+                            (click)="submitApplication(studentApplication)">Υποβολή αίτησης</button>
+                        <button *ngIf="studentApplication.submitted && studentApplication.status === 'Εκρεμής'" mat-flat-button class="flat-blue-btn"
+                            (click)="deleteApplication(studentApplication)">Διαγραφή
+                            αίτησης</button>
+                    </div>
+                </mat-card>
+                <mat-card *ngIf="updatingExisting" class="width-100
+                    margin-top-30 padding-50">
+                    <h2>Επεξεργασία αίτησης για πρακτική άσκηση</h2>
+                    <form class="text-titles"
+                        [formGroup]="oldApplicationForm"
+                        *ngIf="oldApplicationForm">
+                        <div class="flex-form">
+                            <p>Γιατί πρέπει να επιλεγείς εσύ για τη
+                                θέση;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <mat-form-field appearance="fill">
+                                <textarea matInput formControlName="reasoning"
+                                    aria-label="κείμενο αίτησης για πρακτική
+                                    άσκηση"></textarea>
+                                <mat-hint *ngIf="!oldApplicationForm.controls['reasoning'].invalid">{{oldApplicationForm.controls['reasoning'].value.length}}
+                                    / 255 χαρακτήρες</mat-hint>
+                                <mat-error
+                                    *ngIf="oldApplicationForm.controls['reasoning'].hasError('required')">Το
+                                    πεδίο είναι υποχρεωτικό</mat-error>
+                                <mat-error
+                                    *ngIf="oldApplicationForm.controls['reasoning'].hasError('maxlength')">Το
+                                    κείμενο που θα γράψεις πρέπει να έχει το
+                                    πολύ 255 χαρακτήρες</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex-form">
+                            <div class="flex-file">
+                                <span class="sbs-tooltip">
+                                    <p>
+                                        Αναλυτική βαθμολογία
+                                    </p>
+                                    <button type="button"
+                                        mat-icon-button
+                                        matTooltip="Αν ανεβάσεις αρχείο κατά την
+                                        αίτηση σου για πρακτική άσκηση θα
+                                        ενημωρηθεί και αυτόματα το προφίλ σου με
+                                        το αρχείο."
+                                        color="primary">
+                                        <mat-icon>info</mat-icon>
+                                    </button>
+                                    :
+                                </span>
+                                <a *ngIf="this.student.gradesFile && fileToUpload === null" (click)="openFileByPath(this.studentApplication.grades)">{{getFileName()}}</a>&nbsp;
+                                <p *ngIf="!this.student.gradesFile || fileToUpload !== null">{{getFileNameUpd()}}&nbsp;</p>
+                                <input
+                                    class="file-upload" aria-label="add files"
+                                    class="form-control" type="file"
+                                    (change)="onChange($event)" #fileUpload
+                                    multiple
+                                    hidden>
+                                <button class="circle mini" type="button"
+                                    mat-icon-button
+                                    (click)="fileUpload.click()">
+                                    <mat-icon>attach_file</mat-icon>
+                                </button></div>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <div class="sbs-action-buttons">
+                    <button mat-flat-button class="flat-blue-btn"
+                        (click)="updateApplication()">Ενημέρωση
+                        στοιχείων</button>
+                    </div>
+                </mat-card>
+            </div>
+            <div *ngIf="!viewApplicationDetails && internship &&
+                internship.enabled &&
+                (!isStudent() &&
+                isLoggedIn())" class="width-100 margin-right-30
+                flex-column-scroll last">
+                <div *ngIf="applications.length === 0"
+                    class="sbs-applicant-buttons-no-applications">
+                    <mat-card class="width-100 no-margin">
+                        <h3>Δεν υπάρχουν αιτήσεις για την αγγελία</h3>
+                    </mat-card>
+                </div>
+                <cdk-virtual-scroll-viewport *ngIf="applications.length > 0" scrollWindow itemSize=""
+                    class="viewport">
+                    <mat-card class="mat-card-scroll" *cdkVirtualFor="let
+                        application of applications">
+                        <h2 class="padding-50">Λεπτομέρειες αίτησης</h2>
+                        <div class="grid-container padding-50">
+                            <h3>Υποψηφιος:</h3><p>{{application.user.firstname}}
+                                {{application.user.lastname}}</p>
+                            <h3>Αναλυτική βαθμολογία:</h3><a
+                                *ngIf="application.grades"
+                                (click)="openFileByPath(application.grades)">{{application.grades.pdf.path}}</a>
+                            <h3>Κατάσταση αίτησης:</h3><p>{{application.status}}</p>
+                            <h3>Κείμενο αίτησης:</h3><p class="paragraph">{{application.reasoning}}</p>
+                            <h3 *ngIf="application.cancelReasoning">Αίτια
+                                απόρριψης:</h3><p
+                                *ngIf="application.cancelReasoning"
+                                class="paragraph">{{application.cancelReasoning}}</p>
+                        </div>
+                        <div *ngIf="application.status === 'Εκρεμής'"
+                            class="padding-50">
+                            <button mat-flat-button class="flat-blue-btn
+                                small-btn
+                                margin-right-30"
+                                (click)="denyApplicationToggle()">Απόρριψη
+                                υποψηφίου</button>
+                            <button mat-flat-button class="flat-blue-btn
+                                small-btn
+                                last"
+                                (click)="acceptApplicationCall(application)">Επιλογή
+                                υποψηφίου</button>
+                        </div>
+                        <div class="padding-50 denied-application"
+                            *ngIf="isApplicationDenied">
+                            <h3>Αίτια απόρριψης υποψηφίου</h3>
+                            <mat-form-field>
+                                <textarea matInput [(ngModel)]="cancelReasoning"
+                                    aria-label="αίτια απόρριψης"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <div>
+                                <button mat-flat-button class="flat-blue-btn"
+                                    (click)="denyApplicationCall(application)">Οριστική
+                                    υποβολή απόρριψης</button>
+                            </div>
+                        </div>
+                        <div class="padding-50 denied-application"
+                            *ngIf="isApplicationAccepted">
+                            <h3>Αίτια απόρριψης υποψηφίου</h3>
+                            <mat-form-field>
+                                <textarea matInput [(ngModel)]="cancelReasoning"
+                                    aria-label="αίτια απόρριψης"></textarea>
+                            </mat-form-field>
+                            <br>
+                            <div>
+                                <button mat-flat-button class="flat-blue-btn"
+                                    (click)="denyApplicationCall(application)">Οριστική
+                                    υποβολή απόρριψης</button>
+                            </div>
+                        </div>
+                    </mat-card>
+                </cdk-virtual-scroll-viewport>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

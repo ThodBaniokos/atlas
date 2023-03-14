@@ -1,0 +1,113 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+  <div class="main breadcrumb-position">
+    <div class="breadcrumb">
+      <ul class="breadcrumb-list">
+          <li class="not-last" *ngFor="let url of breadcrumb ; let
+              i=index">
+              <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+          </li>
+          <li class="last">{{getLastBreadcrumb()}}</li>
+      </ul>
+  </div>
+  </div>
+  <div class="main routes">
+    <div>
+      <button class="stroked-btn" mat-stroked-button routerLink="/index/faq-student">Φοιτητές</button>
+      <button class="flat-btn" mat-flat-button routerLink="/index/faq-employer">Εργοδότες</button>
+    </div>
+  </div>
+  <div class="main card">
+    <mat-card>
+      <h2>Συνχές Ερωτήσεις Φοιτητών</h2>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Τι πρέπει να προσέξω για την ασφάλεια μου;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Δε θα πρέπει να αποκαλύπτετε σε κανέναν το Όνομα Χρήστη και τον
+              Κωδικό Πρόσβασης που σας έχουν δοθεί από το Ίδρυμά σας.</p>
+            <p>Επίσης, σε περίπτωση που συνδέεστε στο σύστημα από δημόσιο
+              υπολογιστή, βεβαιωθείτε ότι πατάτε πάντα το κουμπί "Αποσύνδεση"
+              πάνω δεξιά στην οθόνη κατά την έξοδό σας και ότι κλείνετε το
+              φυλλομετρητή.</p>
+          </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Πώς μπορώ να εγγραφώ/εισέλθω στο σύστημα;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Η σύνδεση στο σύστημα γίνεται από την <a href="#">σελίδα Σύνδεσης</a>.
+              Αν δεν έχετε λογαριασμό μπορείτε να κάνετε <a href="#">Εγγραφή</a>
+              στο σύστημα και έπειτα μπορείτε να πλοηγηθείται στην υπηρεσία.</p>
+          </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Τι μπορώ να κάνω σε περίπτωση που χάσω τους κωδικούς μου<br>
+                ή αντιμετωπίζω πρόβλημα με την είσοδό μου στο λογαριασμό μου;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Για θέματα που αφορούν την πρόσβασή σας στο λογαριασμό σας (Όνομα
+              Χρήστη/Κωδικός Πρόσβασης) θα πρέπει να απευθυνθείτε στις
+              αντίστοιχες υπηρεσίες (γραφείο μηχανοργάνωσης ή κέντρο δικτύων)
+              του οικείου σας ιδρύματος.</p>
+          </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Ποιές είναι οι προϋποθέσεις για να επιλεγώ για μία θέση
+                Πρακτικής Άσκησης;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Κάθε ακαδημαϊκό τμήμα έχει συγκεκριμένες προϋποθέσεις για τη
+              συμμετοχή των φοιτητών στην Πρακτική Άσκηση. Για περισσότερες
+              πληροφορίες μπορείτε να απευθυνθείτε στο αρμόδιο Γραφείο Πρακτικής
+              Άσκησης του Ιδρύματός σας.</p>
+          </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Βρήκα κάποιες θέσεις Πρακτικής Άσκησης που με ενδιαφέρουν,
+                τι θα πρέπει να κάνω;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Μπορείτε να υποβάλετε αίτηση, προς το Γραφείο Πρακτικής Άσκησης
+              του Ιδρύματός σας, με τις θέσεις που σας ενδιαφέρουν και εφόσον
+              αντιστοιχιστείτε σε κάποια θέση πρακτικής άσκησης να ενημερώνεστε
+              από το λογαριασμό σας για την εξέλιξή της.</p>
+          </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <strong>Υπάρχει κάποια βεβαίωση που μπορώ να λάβω μετά την
+                ολοκλήρωση της Πρακτικής Άσκησης;</strong>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <span>
+            <p>Μετά την ολοκλήρωση της Πρακτικής Άσκησης μπορείτε μέσα από τo
+              λογαριασμό σας να λάβετε online τη βεβαίωση επιτυχούς ολοκλήρωσής
+              της.</p>
+          </span>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="center">
+        <button class="flat-nav-btn" mat-flat-button routerLink="/index">Επιστροφή στην Αρχική</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<app-footer></app-footer>

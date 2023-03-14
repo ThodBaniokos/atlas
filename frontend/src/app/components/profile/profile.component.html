@@ -1,0 +1,63 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main profile">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card *ngIf="isStudent()" class="user-info">
+            <div class="title">
+                <p>Στοιχεία Χρήστη</p>
+                <hr>
+            </div>
+            <div class="content sbs-info">
+                <div class="circle"><p>{{getTextForAvatar()}}</p></div>
+                <div class="text-titles">
+                    <div class="flex"><p class="title">Όνομα: </p> <p>{{user.firstname}}</p></div>
+                    <div class="flex"><p class="title">Επώνυμο: </p> <p>{{user.lastname}}</p></div>
+                    <div class="flex"><p class="title">Όνομα χρήστη: </p> <p>{{user.username}}</p></div>
+                    <div class="flex"><p class="title">Email Επικοινωνίας:</p> <p>{{user.email}}</p></div>
+                    <div class="flex"><p class="title">Τμήμα και πανεπιστήμιο:</p> <p>{{user.department}}</p></div>
+                    <div class="flex"><p class="title">Αναλυτική Βαθμολογία:</p> <p *ngIf="!user.gradesFile">{{getFileName()}}</p>
+                        <a *ngIf="user.gradesFile" (click)="openFile()">{{getFileName()}}</a></div>
+                </div>
+            </div>
+            <div class="sbs">
+                <button class="stroked-btn" mat-stroked-button routerLink="/index">Πίσω στην Αρχική</button>
+                <button class="flat-btn" mat-flat-button (click)="goToEditProfile()">Επεξεργασία Προφίλ</button>
+            </div>
+        </mat-card>
+        <mat-card *ngIf="!isStudent()" class="user-info">
+            <div class="title">
+                <p>Στοιχεία Εταιρίας</p>
+                <hr>
+            </div>
+            <div class="content sbs-info">
+                <div class="circle"><p>{{getTextForAvatar()}}</p></div>
+                <div class="text-titles">
+                    <div class="flex"><p class="title">Όνομα εταιρίας: </p> <p>{{user.providerName}}</p></div>
+                    <div class="flex"><p class="title">Είδος εταιρίας: </p> <p>{{user.providerType}}</p></div>
+                    <div class="flex"><p class="title">Δραστηριότητα εταιρίας: </p> <p>{{user.providerTob}}</p></div>
+                    <div class="flex"><p class="title">Email εταιρίας: </p> <p>{{user.email}}</p></div>
+                    <div class="flex"><p class="title">Τηλέφωνο εταιρίας: </p> <p>{{user.providerLandline}}</p></div>
+                    <div class="flex"><p class="title">Διεύθυνση εταιρίας: </p> <p>{{user.providerAddress}}</p></div>
+                    <div class="flex"><p class="title">ΑΦΜ Εταιρίας: </p> <p>{{user.providerAfm}}</p></div>
+                    <div class="flex"><p class="title">ΔΟΥ Εταιρίας: </p> <p>{{user.providerDoy}}</p></div>
+                    <div class="flex"><p class="title">Όνομα εκπροσώπου: </p> <p>{{user.firstname}}</p></div>
+                    <div class="flex"><p class="title">Επώνυμο εκπροσώπου: </p> <p>{{user.lastname}}</p></div>
+                    <div class="flex"><p class="title">Αριθμός ταυτότητας εκπροσώπου: </p> <p>{{user.providerId}}</p></div>
+                </div>
+            </div>
+            <div class="sbs">
+                <button class="stroked-btn" mat-stroked-button routerLink="/index">Πίσω στην Αρχική</button>
+                <button class="flat-btn" mat-flat-button (click)="goToEditProfile()">Επεξεργασία Προφίλ</button>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

@@ -33,6 +33,7 @@ In order to run the preview of the application you need to have **Docker** insta
 - Run the command:
 - `docker compose up` or `docker-compose up`
 - If your user is a non-root user you need to run this command with **sudo** or you can follow the guide on [how to manage Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/) to resolve this issue.
+- When the installation phase of the application stops the application should run on <http://localhost:4200>
 
 ### For testing in Linux
 
@@ -48,7 +49,8 @@ To test this application in a linux distribution you can simply install the [Doc
 - Make sure to check out the post installation step you should do.
 - After the installation is complete all you need to do to run the application is to navigate to the root directory and run the command `docker compose up` or `docker-compose up`
 - If your user is a non-root user you need to run this command with **sudo** or you can follow the guide on [how to manage Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall/) to resolve this issue.
+- When the installation phase of the application stops the application should run on <http://localhost:4200>
 
 ### For testing in MacOS
 
-In order to run the application in MacOS you have to install [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/). Follow the instructions provided in the installation page and then to run the application all you have to do is run the command `docker compose up`.
+In order to run the application in MacOS you have to install [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/). Follow the instructions provided in the installation page and then to run the application all you have to do is run the command `docker compose up`. When the installation phase of the application stops the application should run on <http://localhost:4200>

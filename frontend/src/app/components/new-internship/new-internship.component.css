@@ -1,0 +1,63 @@
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . ."
+        ". . main main main main main main main main . .";
+}
+
+.main {
+    grid-area: main;
+}
+
+mat-card {
+    padding: 40px 0px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.content {
+    grid-column-start: 2;
+    grid-column-end: 12;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.flex.f-form {
+    flex-direction: column;
+}
+
+.flat-blue-btn {
+    border-radius: 0 !important;
+    background-color: #014d8d !important;
+    text-align: center !important;
+    color: white !important;
+    padding: 30px !important;
+}
+
+mat-form-field {
+    margin-bottom: 20px;
+}
+
+.center {
+    text-align: center;
+}
+
+form {
+    width: 50%;
+}
+
+textarea {
+    height: 150px !important;
+    resize: none;
+}

@@ -1,0 +1,128 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+  <div class="main breadcrumb-position">
+    <div class="breadcrumb">
+      <ul class="breadcrumb-list">
+          <li class="not-last" *ngFor="let url of breadcrumb ; let
+              i=index">
+              <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+          </li>
+          <li class="last">{{getLastBreadcrumb()}}</li>
+      </ul>
+  </div>
+  </div>
+  <div class="main routes">
+    <div>
+      <button class="flat-btn" mat-flat-button routerLink="/index/faq-student">Φοιτητές</button>
+      <button class="stroked-btn" mat-stroked-button routerLink="/index/faq-employer">Εργοδότες</button>
+    </div>
+  </div>
+  <div class="main card">
+    <mat-card>
+    <h2>Συνχές Ερωτήσεις Εργοδοτών</h2>
+      <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Ποιοι μπορούν να εγγραφούν ως Φορείς Υποδοχής Πρακτικής Άσκησης;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Κάθε Ιδιωτική Επιχείρηση, Μη Κυβερνητικός Οργανισμός, Δημόσιος Φορέας ή Διεθνής Φορέας, ο οποίος προσφέρει θέσεις Πρακτικής Άσκησης για φοιτητές Πανεπιστημίων και ΤΕΙ, στο εσωτερικό ή στο εξωτερικό, μπορεί να εγγραφεί ως Φορέας Υποδοχής Πρακτικής Άσκησης.</p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Υπάρχει κάποιο όριο στο πλήθος των θέσεων Πρακτικής Άσκησης που μπορούν να καταχωρισθούν;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Ανάλογα με τον αριθμό των εργαζομένων του ΦΥΠΑ ορίζεται και ο μέγιστος αριθμός των θέσεων ΠΑ που μπορούν να καταχωρισθούν.</p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Πως προκύπτει η αμοιβή του φοιτητή;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+              <p>Η αμοιβή του φοιτητή μπορεί να προέλεθει (αναλόγως τη διαθεσιμότητα) από:</p>
+                <ul>
+                  <li>Προγράμματα επιδότησης ΕΣΠΑ</li>
+                  <li>Το οικείο ακαδημαϊκό ίδρυμα του φοιτητή</li>
+                  <li>Προγράμματα επιδότησης ΟΑΕΔ</li>
+                  <li>Το ίδρυμα υποδοχής</li>
+                </ul>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>Σε περίπτωση απώλειας πρόσβασης στην κύρια διεύθυνση e-mail που δηλώθηκε κατά την εγγραφή, τι μπορώ να κάνω;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Θα πρέπει να επικοινωνήσετε μαζί μας μέσω της <a href="index/under-dev">Φόρμας Επικοινωνίας.</a></p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            <strong>Ποια είναι η διαδικασία μεταβολής στοιχείων του Φορέα Υποδοχής Πρακτικής Άσκησης πριν ολοκληρωθεί η διαδικασία πιστοποίησης;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Αφού συνδεθείτε με το Όνομα χρήστη και τον Κωδικό πρόσβασης που επιλέξατε κατά την εγγραφή σας, εισέρχεστε στην Κεντρική Σελίδα. Σε αυτήν επιλέγοντας «προφίλ», μπορείτε να μεταβάλλετε τα στοιχεία του Φορέα Υποδοχής Πρακτικής Άσκησης ή/και του χρήστη.</p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            <strong>Ποια είναι η διαδικασία μεταβολής στοιχείων του Φορέα Υποδοχής Πρακτικής Άσκησης αφού ολοκληρωθεί η διαδικασία πιστοποίησης;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Μετά την ολοκλήρωση της πιστοποίησης, μπορείτε να προβείτε σε τροποποίηση των δευτερευόντων στοιχείων του λογαριασμού σας (π.χ. Διευθύνσεις e-mail, URL κλπ) επιλέγοντας από την Κεντρική Σελίδα «Στοιχεία Φορέα».</p>
+                <p>Για να προβείτε σε αλλαγή πρωτευόντων στοιχείων του λογαριασμού σας (π.χ. ΔΟΥ, στοιχεία Νόμιμου Εκπροσώπου κλπ), θα πρέπει να επικοινωνήσετε μαζί μας μέσω της <a href="index/under-dev">Φόρμας Επικοινωνίας.</a></p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            <strong>Μπορώ να τροποποιήσω τις διαθέσιμες θέσεις Πρακτικής Άσκησης που έχω καταχωρίσει;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Μπορείτε να επικαιροποιήσετε τις διαθέσιμες θέσεις Πρακτικής Άσκησης που έχετε καταχωρίσει, εφόσον βέβαια αυτές δεν έχουν προδεσμευτεί από κάποιο Γραφείο Πρακτικής Άσκησης.</p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            <strong>Τι πρέπει να προσέξω για την ασφάλειά μου;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Για τη δική σας ασφάλεια σας συνιστούμε να επιλέξετε ένα συνδυασμό από γράμματα, αριθμούς και σύμβολα για να δημιουργήσετε ένα μοναδικό κωδικό πρόσβασης που δε σχετίζεται με τα προσωπικά σας στοιχεία. Μπορείτε για παράδειγμα να επιλέξτε μια τυχαία λέξη ή φράση και να εισαγάγετε αριθμούς ή σύμβολα στην αρχή, στη μέση και στο τέλος (για παράδειγμα "m1awra1ap3tal0uda"). Η χρήση απλών λέξεων ή φράσεων όπως "password" ή "12345", θα πρέπει να αποφεύγεται. Επίσης, σε περίπτωση που συνδέεστε στο σύστημα από δημόσιο υπολογιστή, βεβαιωθείτε ότι πάντα πατάτε το κουμπί "Αποσύνδεση" πάνω δεξιά στην οθόνη κατά την έξοδό σας και κλείνετε το φυλλομετρητή.</p>
+            </span>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+            <strong>Πού μπορώ να απευθυνθώ για περαιτέρω βοήθεια;</strong>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <span>
+                <p>Μπορείτε να επικοινωνήσετε μαζί μας μέσω της <a href="index/under-dev">Φόρμας Επικοινωνίας</a> για οποιαδήποτε άλλη απορία έχετε.</p>
+            </span>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="center">
+        <button class="flat-nav-btn" mat-flat-button routerLink="/index">Επιστροφή στην Αρχική</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<app-footer></app-footer>

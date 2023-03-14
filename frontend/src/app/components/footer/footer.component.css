@@ -1,0 +1,49 @@
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    background: #25aae1;
+    grid-template-areas:
+      "footer footer footer footer footer footer footer footer footer footer footer footer";
+}
+
+.footer {
+    padding-top: 80px;
+    grid-area: footer;
+    height: 360px;
+}
+
+.student {
+    grid-column-start: 3;
+}
+
+.employer {
+    grid-column-start: 5;
+}
+
+.university {
+    grid-column-start: 7;
+}
+
+.misc {
+    grid-column-start: 9;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}

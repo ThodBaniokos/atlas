@@ -1,0 +1,64 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <div *ngIf="applications.length > 0">
+            <div class="flex-end">
+                <button mat-stroked-button class="stroked-yellow-btn last" (click)="massEnable()">Υποβολή αίτησης</button>
+            </div>
+            <mat-card class="flex" *ngFor="let application of applications">
+                <div class="sbs">
+                    <div class="sbs-top">
+                        <p>{{application.internship.author.providerName}}</p>
+                        <h2>{{application.internship.title}}</h2>
+                        <p class="p-desc">{{application.internship.description}}</p>
+                    </div>
+                    <div class="sbs-bottom">
+                        <div class="sbs-pair"><img alt="εκρπόσωπος"
+                                src="/assets/images/user-icon-filled.png">&nbsp;&nbsp;<p>{{application.internship.author.firstname}}</p></div>
+                        <div class="sbs-pair"><img alt="σταθερό τηλέφωνο"
+                                src="/assets/images/landline.png">&nbsp;&nbsp;<p>{{application.internship.author.providerLandline}}</p></div>
+                        <div class="sbs-pair"><img alt="email"
+                                src="/assets/images/mail-account.png">&nbsp;&nbsp;<p>{{application.internship.author.email}}</p></div>
+                    </div>
+                </div>
+                <div class="width-60 flex">
+                    <div>
+                        <p *ngIf="!application.submitted"><strong>Κατάσταση αίτησης:&nbsp;</strong>Αποθηκευμένη</p>
+                        <p *ngIf="application.submitted && application.status"><strong>Κατάσταση αίτησης:&nbsp;</strong>{{application.status}}</p>
+                    </div>
+                    <mat-checkbox *ngIf="!application.submitted"
+                        (change)="changeEvent($event, application)">&#x200C;</mat-checkbox>
+                    <button mat-flat-button class="flat-btn"
+                        (click)="goToInternshipPageStudent(application)">Προβολή
+                        λεπτομερειών</button>
+                </div>
+            </mat-card>
+        </div>
+        <div *ngIf="applications.length === 0">
+            <mat-card class="flex column">
+                <h1>
+                    Δεν έχεις κάνει αίτηση για καμία πρακτική άσκηση.
+                </h1>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button mat-flat-button class="flat-btn" (click)="goToSearchPage()">Αναζήτηση πρακτικής άσκησης</button>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

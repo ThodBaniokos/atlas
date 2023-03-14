@@ -1,0 +1,133 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <mat-card>
+            <div class="flex logo">
+                <img class="logo" src="assets/images/atlas-logo-text.png"
+                    alt="Atlas Logo Text" loading="lazy">
+                <h1 class="slogan">Κόμβος Πρακτικής Άσκησης</h1>
+            </div>
+            <div class="flex-row search-text">
+                <h2>Αναζήτησε την πρακτική που σου ταιριάζει</h2>
+            </div>
+            <form class="form-margin flex-row form-input"
+                [formGroup]="searchForm">
+                <div class="width-33">
+                    <span class="sbs">
+                        <p>
+                            <strong>Θέσεις ανά Περιοχή</strong>
+                        </p>
+                        <button type="button"
+                            mat-icon-button
+                            matTooltip="Προαιρετική Επιλογή"
+                            color="primary">
+                            <mat-icon>info</mat-icon>
+                        </button>
+                    </span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Περιοχή Πρακτικής Άσκησης</mat-label>
+                        <input type="text"
+                            aria-label="Περιοχή Πρακτικής Άσκησης"
+                            matInput
+                            formControlName="location"
+                            [matAutocomplete]="auto">
+                        <mat-autocomplete autoActiveFirstOption
+                            #auto="matAutocomplete">
+                            <mat-option *ngFor="let option of
+                                filteredOptions | async"
+                                [value]="option">
+                                {{option}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <div class="width-33">
+                    <span class="sbs">
+                        <p>
+                            <strong>Θέσεις ανά Τμήμα</strong>
+                        </p>
+                        <button type="button"
+                            mat-icon-button
+                            matTooltip="Προαιρετική Επιλογή"
+                            color="primary">
+                            <mat-icon>info</mat-icon>
+                        </button>
+                    </span>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Τμήμα</mat-label>
+                        <input type="text"
+                            aria-label="τμηματα πανεπιστημιων"
+                            matInput
+                            formControlName="department"
+                            [matAutocomplete]="autoGroup">
+                        <mat-autocomplete #autoGroup="matAutocomplete">
+                            <mat-optgroup *ngFor="let group of
+                                departmentsGroupOptions | async"
+                                [label]="group.university">
+                                <mat-option *ngFor="let name of
+                                    group.department" [value]="name">
+                                    {{name}}
+                                </mat-option>
+                            </mat-optgroup>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </form>
+            <div class="flex-row search-btn">
+                <button class="flat-btn" mat-flat-button color="primary"
+                    (click)="search()">Αναζήτηση Θέσεων</button>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="flex-column">
+                <p class="text"><strong>Είσαι εργοδότης και έχεις θέσεις για
+                        πρακτική άσκηση;</strong></p>
+                <button class="flat-btn" mat-flat-button type="submit"
+                    (click)="makeRedirection('employer')">Δημοσίευσε
+                    Αγγελία</button>
+            </div>
+        </mat-card>
+        <mat-card>
+            <div class="flex-column">
+                <h3>Πως Λειτουργεί η υπηρεσία</h3>
+                <div class="flex-row">
+                    <div class="bottom-card">
+                        <img src="assets/images/user-icon.png" alt="user icon"
+                            loading="lazy" width="100px" height="100px">
+                        <p>
+                            Φτιάξε τον λογαργιασμο σου
+                            στον Άτλας συμπληρώνοντας
+                            τα στοιχεία σου μία φορά
+                        </p>
+                    </div>
+                    <div class="bottom-card">
+                        <img src="assets/images/upload-doc.png" alt="file
+                            upload"
+                            loading="lazy" width="100px" height="100px">
+                        <p>
+                            Ανέβασε την αναλυτική βαθμολογία σου
+                        </p>
+                    </div>
+                    <div class="bottom-card">
+                        <img src="assets/images/search-job.png" alt="job search"
+                            loading="lazy" width="100px" height="100px">
+                        <p>
+                            Αναζήτησε εύκολα και γρήγορα για την πρακτική άσκηση
+                            που
+                            σου ταιριάζει
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <button class="flat-btn" mat-flat-button
+                        (click)="makeRedirection('student')">Ξεκίνα τώρα</button>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

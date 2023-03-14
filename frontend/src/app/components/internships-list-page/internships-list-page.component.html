@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main content">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <div *ngIf="internships">
+            <div class="flex-end">
+                <button mat-stroked-button class="stroked-yellow-btn last"
+                    (click)="massEnable()">Δημοσίευση</button>
+            </div>
+            <mat-card class="flex" *ngFor="let internship of internships">
+                <div class="sbs">
+                    <div class="sbs-top">
+                        <p>{{internship.author.providerName}}</p>
+                        <h2>{{internship.title}}</h2>
+                        <p class="p-desc">{{internship.description}}</p>
+                    </div>
+                    <div class="sbs-bottom">
+                        <div class="sbs-pair"><img alt="εκρπόσωπος"
+                                src="/assets/images/user-icon-filled.png">&nbsp;&nbsp;<p>{{internship.author.firstname}}</p></div>
+                        <div class="sbs-pair"><img alt="σταθερό τηλέφωνο"
+                                src="/assets/images/landline.png">&nbsp;&nbsp;<p>{{internship.author.providerLandline}}</p></div>
+                        <div class="sbs-pair"><img alt="email"
+                                src="/assets/images/mail-account.png">&nbsp;&nbsp;<p>{{internship.author.email}}</p></div>
+                    </div>
+                </div>
+                <div class="width-60 flex">
+                    <div>
+                        <p *ngIf="!internship.enabled"><strong>Κατάσταση αγγελίας:&nbsp;</strong>Αποθηκευμένη</p>
+                        <p *ngIf="internship.enabled"><strong>Κατάσταση αγγελίας:&nbsp;</strong>Δημοσιευμένη</p>
+                    </div>
+                    <mat-checkbox *ngIf="!internship.enabled"
+                        (change)="changeEvent($event, internship)">&#x200C;</mat-checkbox>
+                    <button mat-flat-button class="flat-btn"
+                        (click)="goToInternshipProvider(internship)">Προβολή
+                        λεπτομερειών</button>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

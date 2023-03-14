@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main breadcrumb-position">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+    </div>
+    <mat-card class="main register-position">
+        <div class="main register-title">
+
+            <h2>Δημιούργησε λογαριασμό στον Άτλας</h2>
+
+        </div>
+
+        <div class="main register-choices">
+            <div class="sbs">
+                <div class="register-btn">
+                    <h3>Εγγραφή ως Φοιτητής</h3>
+                    <button class="flat-blue-btn" mat-flat-button type="button" routerLink="/index/register/student">Εγγραφή
+                        Φοιτητή</button>
+                </div>
+                <div class="register-btn">
+                    <h3>Εγγραφή ως Εργοδότης</h3>
+                    <button class="flat-blue-btn" mat-flat-button type="button" routerLink="/index/register/employer">Εγγραφή
+                        Εργοδότη</button>
+                </div>
+            </div>
+            <button class="flat-blue-btn" mat-flat-button type="button" routerLink="/index">Επιστροφή
+                Στην Αρχική</button>
+        </div>
+    </mat-card>
+</div>
+<app-footer></app-footer>

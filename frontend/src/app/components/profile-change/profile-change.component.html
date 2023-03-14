@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main profile">
+        <div class="breadcrumb" *ngIf="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb; let
+                    i=index">
+                    <a *ngIf="i < breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card *ngIf="isStudent()" class="user-info">
+            <div class="title">
+                <p>Στοιχεία Χρήστη</p>
+                <hr>
+            </div>
+            <div class="content sbs-info">
+                <div class="circle"><p>{{getTextForAvatar()}}</p></div>
+                <form class="text-titles"
+                    [formGroup]="changeProfileForm" *ngIf="changeProfileForm">
+                    <div class="flex">
+                        <p class="title">Όνομα:</p>
+                        {{user.firstname}}
+                    </div>
+                    <div class="flex">
+                        <p class="title">Επώνυμο:</p>
+                        {{user.lastname}}
+                    </div>
+                    <div class="flex">
+                        <p class="title">Όνομα χρήστη:</p>
+                        {{user.username}}
+                    </div>
+                    <div class="flex">
+                        <p class="title">Email Επικοινωνίας:</p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="email"
+                                formControlName="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="flex"><p class="title">Αναλυτική Βαθμολογία:</p>
+                        {{getFileName()}} &nbsp;
+                        <input
+                            class="file-upload" aria-label="add files"
+                            class="form-control" type="file"
+                            (change)="onChange($event)" #fileUpload multiple
+                            hidden>
+                        <button class="circle mini" type="button"
+                            mat-icon-button (click)="fileUpload.click()">
+                            <mat-icon>attach_file</mat-icon>
+                        </button></div>
+                </form>
+            </div>
+            <div class="sbs">
+                <button class="stroked-btn" mat-stroked-button
+                    (click)="goToProfile()">Πίσω στο Προφίλ</button>
+                <button class="flat-btn" mat-flat-button
+                    (click)="onSubmit()">Ενημέρωση Στοιχείων</button>
+            </div>
+        </mat-card>
+        <mat-card *ngIf="!isStudent()" class="user-info">
+            <div class="title">
+                <p>Στοιχεία Εταιρίας</p>
+                <hr>
+            </div>
+            <div class="content sbs-info">
+                <div class="circle"><p>{{getTextForAvatar()}}</p></div>
+                <form class="text-titles"
+                    [formGroup]="changeProfileForm" *ngIf="changeProfileForm">
+                    <div class="flex"><p class="title">Όνομα εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="όνομα
+                                εταιρίας"
+                                formControlName="providerName">
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Είδος εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <mat-select formControlName="providerType"
+                                [(ngModel)]="selectedType">
+                                <mat-option *ngFor="let type of providerTypes"
+                                    [value]="type">
+                                    {{type}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Δραστηριότητα εταιρίας:
+                        </p> <mat-form-field appearance="fill">
+                            <mat-select formControlName="providerTob"
+                                [(ngModel)]="selectedTob">
+                                <mat-option *ngFor="let tob of
+                                    providerTypeOfBussines"
+                                    [value]="tob">
+                                    {{tob}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Email εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="email"
+                                formControlName="email">
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Τηλέφωνο εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="Τηλέφωνο
+                                εταιρίας"
+                                formControlName="email">
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Διεύθυνση εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="Διεύθυνση
+                                εταιρίας"
+                                formControlName="providerAddress">
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">ΑΦΜ Εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="ΑΦΜ
+                                Εταιρίας"
+                                formControlName="providerAfm">
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">ΔΟΥ Εταιρίας: </p>
+                        <mat-form-field appearance="fill">
+                            <mat-select formControlName="providerDoy"
+                                [(ngModel)]="selectedDoy">
+                                <mat-option *ngFor="let doy of providerDoy"
+                                    [value]="doy">
+                                    {{doy}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field></div>
+                    <div class="flex"><p class="title">Αριθμός ταυτότητας
+                            εκπροσώπου: </p> <mat-form-field appearance="fill">
+                            <input type="text" matInput aria-label="Αριθμός
+                                ταυτότητας
+                                εκπροσώπου"
+                                formControlName="providerId">
+                        </mat-form-field></div>
+                </form>
+            </div>
+            <div class="sbs">
+                <button class="stroked-btn" mat-stroked-button
+                    (click)="goToProfile()">Πίσω στο Προφίλ</button>
+                <button class="flat-btn" mat-flat-button
+                    (click)="onSubmit()">Ενημέρωση Στοιχείων</button>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<app-footer></app-footer>

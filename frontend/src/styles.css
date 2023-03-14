@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.cdnfonts.com/css/verdana');
+
+* {
+    font-family: 'Verdana', sans-serif;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #d9d9d9;
+}
+
+.text-white {
+    color: white;
+}
+
+.employer-link {
+    cursor: pointer;
+}
+
+.flex-start {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.mdc-text-field--filled .mdc-line-ripple::after {
+    border-bottom-color: #213f9a
+}
+
+div.breadcrumb ul.breadcrumb-list {
+    padding: 0;
+    list-style: none;
+}
+
+div.breadcrumb ul.breadcrumb-list li {
+    display: inline;
+    font-size: 10px;
+}
+
+div.breadcrumb ul.breadcrumb-list li.last {
+    display: inline;
+    font-size: 10px;
+    color: black;
+}
+
+div.breadcrumb ul.breadcrumb-list li+li.not-last:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+div.breadcrumb ul.breadcrumb-list li a {
+    color: #203d94;
+    text-decoration: none;
+}
+
+div.breadcrumb ul.breadcrumb-list li a:hover {
+    color: #142761;
+    text-decoration: underline;
+}
+
+.green {
+    color: #2e7d32;
+}
+
+.red {
+    color: #c62828;
+}
+
+.mat-calendar-body-selected {
+    background-color: #014d8d !important;
+    color: #fff !important;
+}
+
+mat-form-field {
+    width: 80% !important;
+}
+
+.p-desc {
+    display: block;
+    width: 500px !important;
+    overflow-wrap: break-word;
+}
+
+.mat-mdc-snack-bar-container {
+    --mat-mdc-snack-bar-button-color: #014d8d;
+    --mdc-snackbar-container-color: white;
+    --mdc-snackbar-supporting-text-color: black;
+}
+
+.mat-badge-content {
+    color: #fff0 !important;
+    /* background: #21abde !important; */
+}
+
+.dropdown-profile:hover .mat-badge-content {
+    color: #fff0 !important;
+    background: #fff0 !important;
+}
+
+.dropdown-content-profile:hover .mat-badge-content {
+    color: #fff0 !important;
+    background: #f44336 !important;
+}

@@ -1,0 +1,270 @@
+<app-navbar></app-navbar>
+<div class="main-container">
+    <div class="main login-form">
+        <div class="breadcrumb">
+            <ul class="breadcrumb-list">
+                <li class="not-last" *ngFor="let url of breadcrumb ; let
+                    i=index">
+                    <a *ngIf="i <breadcrumb.length - 1" href={{url[1]}}>{{url[0]}}</a>
+                </li>
+                <li class="last">{{getLastBreadcrumb()}}</li>
+            </ul>
+        </div>
+        <mat-card class="center">
+            <h2>Συμπλήρωσε τα στοιχεία σου</h2>
+            <mat-stepper [linear]='false' #stepper>
+                <mat-step [stepControl]="registerFormProvider"
+                    [editable]="true">
+                    <form [formGroup]="registerFormProvider">
+                        <ng-template matStepLabel>Στοιχεία λογαριασμού</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Όνομα χρήστη</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="username" required>
+                            <mat-error *ngIf="f['username'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Διεύθυνση ηλεκτρονικού ταχυδρομείου</mat-label>
+                            <input aria-label="name" type="text" matInput
+                                formControlName="email" required>
+                            <mat-error *ngIf="f['email'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Κωδικός</mat-label>
+                            <input aria-label="password" type="password"
+                                matInput formControlName="password" required>
+                            <mat-error *ngIf="f['password'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <p class="left">Ο κωδικός πρέπει να περιέχει:</p>
+                        <ul>
+                            <li *ngFor="let req of passwordRequirments">
+                                <div class="sbs">
+                                    {{req[0]}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <mat-icon class="green" *ngIf="req[1]">check_circle</mat-icon>
+                                    <mat-icon class="red" *ngIf="!req[1]">cancel</mat-icon>
+                                </div>
+                            </li>
+                        </ul>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Επιβεβαίωση Κωδικού</mat-label>
+                            <input aria-label="confirm password" type="password"
+                                matInput formControlName="confirmPassword"
+                                required>
+                            <mat-error *ngIf="f['confirmPassword'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                            <mat-error *ngIf="f['confirmPassword'].errors &&
+                                f['confirmPassword'].errors['mustMatch']">Οι
+                                κωδικοί πρόσβασης δεν ταιριάζουν
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn
+                                opacity-0" mat-flat-button disabled>Επόμενο Βήμα</button>
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperNext>Επόμενο Βήμα</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="registerFormProvider"
+                    [editable]="true">
+                    <form [formGroup]="registerFormProvider">
+                        <ng-template matStepLabel>Στοιχεία Εταιρίας</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Είδος Εταιρίας</mat-label>
+                            <mat-select formControlName="providerType">
+                                <mat-option *ngFor="let type of providerTypes"
+                                    [value]="type">
+                                    {{type}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f['providerType'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Δραστηριότητα Εταιρίας</mat-label>
+                            <mat-select formControlName="providerTob">
+                                <mat-option *ngFor="let typeOfBussines of
+                                    providerTypeOfBussines"
+                                    [value]="typeOfBussines">
+                                    {{typeOfBussines}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="f['providerTob'].invalid">Το πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Επωνυμία Εταιρίας</mat-label>
+                            <input aria-label="όνομα εταιρίας" type="text"
+                                matInput formControlName="providerName"
+                                required>
+                            <mat-error *ngIf="f['providerName'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>ΑΦΜ Εταιρίας</mat-label>
+                            <input aria-label="αφμ εταιρίας" type="text"
+                                matInput formControlName="providerAfm"
+                                required>
+                            <mat-error *ngIf="f['providerAfm'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>ΔΟΥ Εταιρίας</mat-label>
+                            <input type="text"
+                                aria-label="ΔΟΥ εταιρίας"
+                                matInput
+                                formControlName="providerDoy"
+                                [matAutocomplete]="auto">
+                            <mat-autocomplete autoActiveFirstOption
+                                #auto="matAutocomplete">
+                                <mat-option *ngFor="let option of
+                                    filteredDoy | async"
+                                    [value]="option">
+                                    {{option}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Σταθερό Τηλέφωνο Εταιρίας</mat-label>
+                            <input aria-label="Σταθερό Τηλέφωνο εταιρίας"
+                                type="text"
+                                matInput formControlName="providerLandline"
+                                required>
+                            <mat-error *ngIf="f['providerLandline'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ιστοσελίδα Εταιρίας</mat-label>
+                            <input aria-label="ιστοσελίδα εταιρίας" type="text"
+                                matInput formControlName="providerWebpage"
+                                required>
+                            <mat-error *ngIf="f['providerWebpage'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperPrevious>Προηγούμενο
+                                Βήμα</button>
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperNext>Eπόμενο
+                                Βήμα</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="registerFormProviderAddress"
+                    [editable]="true">
+                    <form [formGroup]="registerFormProviderAddress">
+                        <ng-template matStepLabel>Στοιχεία Διεύθυνσης Εταιρίας</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Χώρα</mat-label>
+                            <mat-select [(ngModel)]="selectedCountry"
+                                formControlName="providerCountry">
+                                <mat-option *ngFor="let country of
+                                    providerCountries"
+                                    [value]="country">
+                                    {{country}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="registerFormProviderAddress.controls['providerCountry'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Πόλη</mat-label>
+                            <input aria-label="πόλη εταιρίας" type="text"
+                                matInput formControlName="providerCity"
+                                required>
+                            <mat-error *ngIf="registerFormProviderAddress.controls['providerCity'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Οδός και αριθμός</mat-label>
+                            <input aria-label="διεύθυνση εταιρίας" type="text"
+                                matInput formControlName="providerStreetNameNumber"
+                                required>
+                            <mat-error *ngIf="registerFormProviderAddress.controls['providerStreetNameNumber'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Ταχυδρομικός κώδικας</mat-label>
+                            <input aria-label="διεύθυνση εταιρίας" type="text"
+                                matInput formControlName="providerPostalCode"
+                                required>
+                            <mat-error *ngIf="registerFormProviderAddress.controls['providerPostalCode'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperPrevious>Προηγούμενο
+                                Βήμα</button>
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperNext>Eπόμενο
+                                Βήμα</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="registerFormProvider"
+                    [editable]="true">
+                    <form [formGroup]="registerFormProvider">
+                        <ng-template matStepLabel>Στοιχεία Εκπροσώπου Εταιρίας</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Όνομα Εκπροσώπου</mat-label>
+                            <input aria-label="όνομα εκπροσώπου εταιρίας" type="text"
+                                matInput formControlName="firstname"
+                                required>
+                            <mat-error *ngIf="f['firstname'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Επώνυμο Εκπροσώπου</mat-label>
+                            <input aria-label="επώνυμο εκπροσώπου εταιρίας" type="text"
+                                matInput formControlName="lastname"
+                                required>
+                            <mat-error *ngIf="f['lastname'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Αριθμός ταυτότητας</mat-label>
+                            <input aria-label="αριθμός ταυτότητας εκπροσώπου εταιρίας" type="text"
+                                matInput formControlName="providerId"
+                                required>
+                            <mat-error *ngIf="f['providerId'].invalid">Το
+                                πεδίο
+                                είναι υποχρεωτικό</mat-error>
+                        </mat-form-field>
+                        <div class="sbs">
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button matStepperPrevious>Προηγούμενο
+                                Βήμα</button>
+                            <button type="button" class="flat-blue-btn"
+                                mat-flat-button
+                                (click)="registerEmployer()">Εγγραφή</button>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-stepper>
+        </mat-card>
+    </div>
+    <div class="main help-and-nav">
+        <h3>Αντιμετωπίζεις κάποιο πρόβλημα;</h3>
+        <button class="flat-yellow-btn" mat-flat-button routerLink="/index/under-dev">Επικοινωνήστε μαζί
+            μας</button>
+        <button class="stroked-yellow-btn" mat-stroked-button
+            routerLink="/index">Επιστροφή στην Αρχική</button>
+    </div>
+</div>
+<app-footer></app-footer>
