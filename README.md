@@ -6,6 +6,8 @@ The project was team based and the backend services were developed by <a href="h
 
 This project is part of the Human Computer Interaction course in the <a href="https://www.di.uoa.gr/en" target="_blank">Department of Informatics and Telecommunications</a> at the <a href="https://www.uoa.gr/" target="_blank">University of Athens</a>.
 
+Note that since the application was a university project there is **no support** for mobile devices!
+
 ## Installation
 
 In order to run the preview of the application you need to have **Docker** installed. If you don't have it, you can follow the instructions below to install it.
