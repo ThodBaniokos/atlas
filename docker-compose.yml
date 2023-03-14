@@ -1,0 +1,49 @@
+# Use root/example as user/password credentials
+# version: '3.1'
+#
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    networks:
+      - mynetwork
+    environment:
+      MYSQL_DATABASE: application
+      MYSQL_ROOT_PASSWORD: example
+    ports:
+     - 3306:3306
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  frontend:
+    image: atlas/frontend
+    restart: always
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    networks:
+      - mynetwork
+    ports:
+      - 4200:4200
+  web:      
+    depends_on:
+      - db
+    image: atlas/backend
+    restart: on-failure
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/application
+    networks:
+      - mynetwork
+    ports:
+      - 9000:9000
+
+networks:
+  mynetwork:
+    driver: bridge
