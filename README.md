@@ -21,12 +21,12 @@ In order to run the preview of the application you need to have **Docker** insta
 - Navigate to the <a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank">Docker Desktop installation page</a> and download the executable.
   - Follow the on-screen instructions of the installer and make sure to check the **Use WSL 2 instead of Hyper-V** option.
 
-1. For Docker Engine installation:
+3. For Docker Engine installation:
 
 - Make sure that you have installed the Ubuntu on Windows from the <a href="https://apps.microsoft.com/store/detail/ubuntu-on-windows/9NBLGGH4MSV6?hl=" target="_blank">Microsoft Store</a>.
 - Navigate to the <a href="https://docs.docker.com/engine/install/ubuntu/" target="_blank">Docker Engine installation page</a> and follow the instructions to download and install the Docker Engine on WSL.
 
-2. After the installation is complete:
+4. After the installation is complete:
 
 - Open Docker Desktop
 - Open Ubuntu on Windows
