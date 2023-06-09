@@ -1,8 +1,5 @@
-# To use adminer image:
-# un-comment the adminer service below the db service
-# use root as username and example as password
 # version: '3.1'
-#
+# phpmyadmin credentials : username -> root and password -> example
 services:
 
   db:
@@ -16,11 +13,11 @@ services:
       MYSQL_ROOT_PASSWORD: example
     ports:
      - 3306:3306
-  # adminer:
-  #   image: adminer
-  #   restart: always
-  #   ports:
-  #     - 8080:8080
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:8080
   frontend:
     image: atlas/frontend
     restart: always
